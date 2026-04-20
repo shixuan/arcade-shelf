@@ -131,3 +131,14 @@
   height: auto;
   touch-action: none;
 }
+
+/* Dark-mode defaults. Hosts can still override any of these variables
+   explicitly — media query specificity is lower than a direct declaration. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --arcade-shelf-modal-bg: #1a1a1a;
+    --arcade-shelf-modal-fg: #e8e8e8;
+    --arcade-shelf-modal-border: rgba(255, 255, 255, 0.1);
+    --arcade-shelf-modal-close-hover: rgba(255, 255, 255, 0.08);
+  }
+}

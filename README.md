@@ -14,8 +14,7 @@ npm install arcade-shelf
 ## Quick start (ES modules)
 
 ```ts
-import { createShelf } from 'arcade-shelf';
-import { pong } from 'arcade-shelf';
+import { createShelf, pong, minesweeper } from 'arcade-shelf';
 import 'arcade-shelf/style.css';
 
 const shelf = createShelf({
@@ -23,6 +22,7 @@ const shelf = createShelf({
   title: "Let's play!",
 });
 shelf.register(pong);
+shelf.register(minesweeper);
 shelf.mount();
 ```
 
@@ -42,6 +42,7 @@ shelf.mount();
     title: "Let's play!",
   });
   shelf.register(ArcadeShelf.pong);
+  shelf.register(ArcadeShelf.minesweeper);
   shelf.mount();
 </script>
 ```
