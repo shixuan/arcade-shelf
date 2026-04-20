@@ -1,0 +1,133 @@
+.arcade-shelf-card {
+  font-family: inherit;
+  color: inherit;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: var(--arcade-shelf-card-bg, rgba(0, 0, 0, 0.02));
+  border: 1px solid var(--arcade-shelf-card-border, rgba(0, 0, 0, 0.08));
+}
+
+.arcade-shelf-card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.arcade-shelf-card-title {
+  font-size: 0.95em;
+}
+
+.arcade-shelf-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.arcade-shelf-list-item {
+  margin: 0;
+  padding: 0;
+}
+
+.arcade-shelf-list-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 6px 8px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  font: inherit;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.12s ease, border-color 0.12s ease;
+}
+
+.arcade-shelf-list-btn:hover,
+.arcade-shelf-list-btn:focus-visible {
+  background: var(--arcade-shelf-hover-bg, rgba(0, 0, 0, 0.05));
+  border-color: var(--arcade-shelf-hover-border, rgba(0, 0, 0, 0.12));
+  outline: none;
+}
+
+.arcade-shelf-list-icon {
+  flex: 0 0 auto;
+  font-size: 1.05em;
+  line-height: 1;
+}
+
+.arcade-shelf-list-label {
+  flex: 1 1 auto;
+  font-size: 0.9em;
+}
+
+.arcade-shelf-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--arcade-shelf-modal-z, 9999);
+  background: var(--arcade-shelf-modal-backdrop, rgba(0, 0, 0, 0.55));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.arcade-shelf-modal {
+  background: var(--arcade-shelf-modal-bg, #fff);
+  color: var(--arcade-shelf-modal-fg, #111);
+  border-radius: 10px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  max-width: calc(100vw - 32px);
+  max-height: calc(100vh - 32px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.arcade-shelf-modal-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--arcade-shelf-modal-border, rgba(0, 0, 0, 0.08));
+}
+
+.arcade-shelf-modal-title {
+  flex: 1 1 auto;
+  font-weight: 600;
+  font-size: 0.95em;
+}
+
+.arcade-shelf-modal-close {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: inherit;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.arcade-shelf-modal-close:hover,
+.arcade-shelf-modal-close:focus-visible {
+  background: var(--arcade-shelf-modal-close-hover, rgba(0, 0, 0, 0.08));
+  outline: none;
+}
+
+.arcade-shelf-canvas {
+  display: block;
+  background: #000;
+  max-width: 100%;
+  height: auto;
+  touch-action: none;
+}

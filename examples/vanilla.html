@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>arcade-shelf — vanilla demo</title>
+    <link rel="stylesheet" href="../dist/style.css" />
+    <style>
+      body {
+        font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+        background: #f6f7f9;
+        color: #222;
+        display: flex;
+        justify-content: center;
+        padding: 40px 16px;
+        margin: 0;
+      }
+      main {
+        width: 100%;
+        max-width: 320px;
+      }
+      h1 {
+        font-size: 1.1em;
+        margin: 0 0 12px;
+      }
+      p {
+        color: #555;
+        font-size: 0.9em;
+        margin: 0 0 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Arcade Shelf deeeeemo</h1>
+      <p>Click a game to play in a modal. Press Esc to close.</p>
+      <div id="games"></div>
+    </main>
+
+    <script src="../dist/index.umd.cjs"></script>
+    <script>
+      const shelf = ArcadeShelf.createShelf({
+        container: '#games',
+        title: "Let's play!",
+      });
+      shelf.register(ArcadeShelf.pong);
+      shelf.mount();
+    </script>
+  </body>
+</html>
