@@ -19,6 +19,12 @@ export interface Game {
   order?: number;
   /** Canvas pixel dimensions. Defaults to 380×280. */
   canvasSize?: CanvasSize;
+  /**
+   * Optional trivial content shown below the canvas inside the modal — useful
+   * for attribution, credits, controls hints, etc. A string is rendered as
+   * text (safe); an HTMLElement is appended as-is (so you can build a link).
+   */
+  footer?: string | HTMLElement;
   /** Factory that receives a canvas and returns start/stop handles. */
   init(canvas: HTMLCanvasElement): GameHandle;
 }

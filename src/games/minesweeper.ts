@@ -42,6 +42,18 @@ export const minesweeper: Game = {
   order: 2,
   canvasSize: { width: 380, height: 420 },
 
+  // Attribution footer. Built lazily so that importing this module in a
+  // non-DOM environment (SSR, tests) doesn't blow up on `document`.
+  get footer(): HTMLElement | undefined {
+    if (typeof document === 'undefined') return undefined;
+    const a = document.createElement('a');
+    a.href = 'https://github.com/shixuan/minesweeper';
+    a.textContent = 'Ported from my Java version →';
+    a.target = '_blank';
+    a.rel = 'noopener';
+    return a;
+  },
+
   init(canvas: HTMLCanvasElement): GameHandle {
     const ctxMaybe = canvas.getContext('2d');
     if (!ctxMaybe) throw new Error('[arcade-shelf/minesweeper] 2D context unavailable');

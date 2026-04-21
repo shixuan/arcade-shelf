@@ -132,6 +132,26 @@
   touch-action: none;
 }
 
+.arcade-shelf-modal-footer {
+  padding: 8px 12px;
+  border-top: 1px solid var(--arcade-shelf-modal-border, rgba(0, 0, 0, 0.08));
+  font-size: 0.8em;
+  color: var(--arcade-shelf-modal-footer-fg, rgba(0, 0, 0, 0.55));
+  text-align: center;
+}
+
+.arcade-shelf-modal-footer a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px dotted currentColor;
+}
+
+.arcade-shelf-modal-footer a:hover,
+.arcade-shelf-modal-footer a:focus-visible {
+  color: var(--arcade-shelf-modal-fg, #111);
+  outline: none;
+}
+
 /* Dark-mode defaults. Hosts can still override any of these variables
    explicitly — media query specificity is lower than a direct declaration. */
 @media (prefers-color-scheme: dark) {
@@ -140,5 +160,6 @@
     --arcade-shelf-modal-fg: #e8e8e8;
     --arcade-shelf-modal-border: rgba(255, 255, 255, 0.1);
     --arcade-shelf-modal-close-hover: rgba(255, 255, 255, 0.08);
+    --arcade-shelf-modal-footer-fg: rgba(255, 255, 255, 0.55);
   }
 }

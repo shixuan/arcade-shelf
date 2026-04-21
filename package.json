@@ -1,6 +1,6 @@
 {
   "name": "arcade-shelf",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Drop-in mini canvas games as a sidebar widget — a shelf for your mini games.",
   "type": "module",
   "main": "./dist/index.umd.cjs",

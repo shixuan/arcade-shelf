@@ -58,6 +58,20 @@ export function openGameModal(game: Game, triggerElement?: HTMLElement | null): 
 
   dialog.appendChild(header);
   dialog.appendChild(canvas);
+
+  // Read once — `footer` may be a getter that constructs a fresh element per call.
+  const footerContent = game.footer;
+  if (footerContent) {
+    const footer = document.createElement('div');
+    footer.className = 'arcade-shelf-modal-footer';
+    if (typeof footerContent === 'string') {
+      footer.textContent = footerContent;
+    } else {
+      footer.appendChild(footerContent);
+    }
+    dialog.appendChild(footer);
+  }
+
   overlay.appendChild(dialog);
   document.body.appendChild(overlay);
 
