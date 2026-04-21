@@ -14,6 +14,7 @@ export type {
 export { openGameModal } from './modal';
 export { pong } from './games/pong';
 export { minesweeper } from './games/minesweeper';
+export { snake } from './games/snake';
 
 export function createShelf(options: ShelfOptions): Shelf {
   const registry = new GameRegistry();

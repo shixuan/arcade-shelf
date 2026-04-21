@@ -1,8 +1,11 @@
 {
   "name": "arcade-shelf",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Drop-in mini canvas games as a sidebar widget — a shelf for your mini games.",
   "type": "module",
+  "sideEffects": [
+    "**/*.css"
+  ],
   "main": "./dist/index.umd.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -23,7 +26,10 @@
     "dev": "vite",
     "build": "vite build",
     "typecheck": "tsc --noEmit",
-    "prepublishOnly": "npm run typecheck && npm run build"
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "size": "size-limit",
+    "prepublishOnly": "npm run typecheck && npm run test && npm run build && npm run size"
   },
   "keywords": [
     "canvas",
@@ -32,7 +38,8 @@
     "widget",
     "sidebar",
     "pong",
-    "minesweeper"
+    "minesweeper",
+    "snake"
   ],
   "author": "shixuan",
   "license": "MIT",
@@ -45,8 +52,33 @@
   },
   "homepage": "https://github.com/shixuan/arcade-shelf#readme",
   "devDependencies": {
+    "@size-limit/preset-small-lib": "^12.1.0",
+    "jsdom": "^24.1.3",
+    "size-limit": "^12.1.0",
     "typescript": "^5.3.0",
     "vite": "^5.0.0",
-    "vite-plugin-dts": "^3.7.0"
-  }
+    "vite-plugin-dts": "^3.7.0",
+    "vitest": "^1.6.1"
+  },
+  "size-limit": [
+    {
+      "name": "ESM (full bundle with all built-in games)",
+      "path": "dist/index.js",
+      "brotli": true,
+      "limit": "8 kB"
+    },
+    {
+      "name": "ESM (createShelf only, no games — tree-shake check)",
+      "path": "dist/index.js",
+      "import": "{ createShelf }",
+      "brotli": true,
+      "limit": "3 kB"
+    },
+    {
+      "name": "UMD (full bundle)",
+      "path": "dist/index.umd.cjs",
+      "brotli": true,
+      "limit": "8 kB"
+    }
+  ]
 }

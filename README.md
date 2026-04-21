@@ -19,7 +19,7 @@ npm install arcade-shelf
 ## Quick start (ES modules)
 
 ```ts
-import { createShelf, pong, minesweeper } from 'arcade-shelf';
+import { createShelf, pong, minesweeper, snake } from 'arcade-shelf';
 import 'arcade-shelf/style.css';
 
 const shelf = createShelf({
@@ -28,12 +28,15 @@ const shelf = createShelf({
 });
 shelf.register(pong);
 shelf.register(minesweeper);
+shelf.register(snake);
 shelf.mount();
 ```
 
 ```html
 <div id="games"></div>
 ```
+
+> Only the games you import end up in your bundle — the built-in games are tree-shakeable. Drop any you don't need from the import list.
 
 ## Quick start (plain HTML, no build step)
 
@@ -48,9 +51,27 @@ shelf.mount();
   });
   shelf.register(ArcadeShelf.pong);
   shelf.register(ArcadeShelf.minesweeper);
+  shelf.register(ArcadeShelf.snake);
   shelf.mount();
 </script>
 ```
+
+## Built-in games
+
+Three reference implementations ship in the box. Pick whichever input
+paradigm is closest to the game you want to build, then copy the shape —
+each one handles `start()` / `stop()` listener lifecycle correctly.
+
+| Game          | Input paradigm         | What to crib from it |
+|---------------|------------------------|-----------------------|
+| **Pong** 🎾    | Mouse / touch drag     | `mousemove` + `touchmove` to track paddle position; `getBoundingClientRect()` cached on `start()` + `resize` instead of per-event; deltaTime normalization so motion is frame-rate independent. |
+| **Minesweeper** 💣 | Left / right click + long-press | `click` to reveal, `contextmenu` to flag, `touchstart` long-press as the touch equivalent of right-click (with swallow of the trailing `click`). |
+| **Snake** 🐍   | Keyboard + swipe       | `keydown` on `window`, swipe on the canvas — two separate layers from the modal's `document`-level focus trap, so there's no ordering contention to reason about; `touchstart` → `touchend` diff for swipe direction; `touchmove` with `passive: false` to suppress page scroll while the finger is on the play area. |
+
+All three are ~200–600 lines of pure canvas + DOM — no framework, no
+dependencies. Read them as recipes, not as a library surface. They're the
+shortest path from "I want to write a mini canvas game" to "it handles
+input and teardown correctly on both desktop and mobile."
 
 ## Integration recipes
 
@@ -99,13 +120,18 @@ the tags at the local paths.
 
 ### Your own game
 
-```ts
-import type { Game } from 'arcade-shelf';
+You do **not** need to fork arcade-shelf to add a game. `shelf.register()`
+accepts any object matching the `Game` contract, no matter where it's
+defined:
 
-export const snake: Game = {
-  name: 'Snake',
-  icon: '🐍',
-  canvasSize: { width: 320, height: 320 },
+```ts
+import { createShelf, type Game } from 'arcade-shelf';
+import 'arcade-shelf/style.css';
+
+const tetris: Game = {
+  name: 'Tetris',
+  icon: '🧱',
+  canvasSize: { width: 320, height: 480 },
   init(canvas) {
     // ... your game logic
     return {
@@ -114,10 +140,15 @@ export const snake: Game = {
     };
   },
 };
+
+createShelf({ container: '#games' })
+  .register(tetris)
+  .mount();
 ```
 
-Then `shelf.register(snake)`. See [src/games/pong.ts](src/games/pong.ts) for
-a worked example including dt normalization and cleanup.
+See [src/games/pong.ts](src/games/pong.ts) for a worked example including
+dt normalization and cleanup, or [src/games/snake.ts](src/games/snake.ts)
+for keyboard input + fixed-step simulation.
 
 ## The game contract
 
