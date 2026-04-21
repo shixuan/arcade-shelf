@@ -3,6 +3,8 @@
 [![npm](https://img.shields.io/npm/v/arcade-shelf.svg)](https://www.npmjs.com/package/arcade-shelf)
 [![license](https://img.shields.io/npm/l/arcade-shelf.svg)](./LICENSE)
 
+[Live demo](https://shixuan.github.io/arcade-shelf/)
+
 Drop-in mini canvas games as a sidebar widget — a shelf for your mini games.
 
 **Not a game engine**, not a canvas library. Just a small runtime that takes a
